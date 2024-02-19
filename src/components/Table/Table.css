@@ -1,0 +1,31 @@
+.table{
+    display: grid;
+    grid-template-columns: repeat(8, minmax(34px, 57px));
+    gap: 8px;
+}
+.table .ticket-item  {
+
+    margin: 0;
+    padding: 5px;
+    background-color: #f6ff75;
+    text-align: center;
+    cursor: pointer;
+    color: black;
+    box-shadow: -1px 1px 4px #9696e5;
+    border-radius: 2px;
+ 
+
+}
+
+.table  .ticket-used{
+    opacity: 0.2;
+    cursor: no-drop;
+    text-decoration: line-through;
+
+}
+.loading-ticket{
+    width: 42px;
+    height: 38px;
+    background-color: aliceblue;
+    
+}

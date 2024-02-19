@@ -1,0 +1,24 @@
+.VideoLock{
+    height: 315px;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+.VideoLock h3{
+    color: rgb(247, 230, 230);
+    font-size: 24px;
+ 
+}
+.VideoLock span{
+    display: inline-block;
+    width: 68px;
+    height: 68px;
+    background-image: url('/public/noun-lock-media-1106296.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: invert(1);
+
+}

@@ -1,0 +1,18 @@
+.ContainerIcon{
+    display: flex;
+    margin: 0;
+    align-items: self-end;
+}
+.ContainerIcon h2{
+    margin:  0;
+    font-weight: bold;
+    font-size: 48px;
+}
+.ContainerIcon span {
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    background-image: url('/public//live-12304.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}

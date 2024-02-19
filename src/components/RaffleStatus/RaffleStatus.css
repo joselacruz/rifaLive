@@ -1,0 +1,25 @@
+.RaffleStatus{
+    margin-top: 30px;
+}
+
+.RaffleStatus-indicator{
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+
+}
+.RaffleStatus-indicator .indicator{
+    display: inline;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+
+}
+.indicator--available{
+background-color: #f6ff75;
+}
+.indicator--notAvailable{
+    background-color: #404226;
+}

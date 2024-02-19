@@ -1,0 +1,7 @@
+.Layout{
+    margin: 110px auto;
+    padding: '20px  0px';
+    display: grid;
+    place-items: center;
+
+}
