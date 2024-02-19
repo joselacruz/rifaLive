@@ -39,7 +39,7 @@ const RaffleDetails = ({ navigateTo }) => {
         justifyContent={'center'}
       >
         <img
-          src="/src/assets/premio.png"
+          src="../public/mi_11_lite_-_5g_ne_-_128_go_-_rose_-_0_1200x1200.png"
           alt="Foto del Premio de la Rifa"
         />
       </Box>
