@@ -8,7 +8,7 @@ export const RaffleProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const allTickets = 200;
   const ticketsAvailable = !loading
-    ? allTickets - data?.soldTickets.length
+    ? allTickets - data?.soldTickets?.length
     : '';
 
   const checkSoldTicket = (nr) => {
@@ -30,9 +30,14 @@ export const RaffleProvider = ({ children }) => {
 
   useEffect(() => {
     async function obtainData() {
-      const response = await getData('raffle-001');
-      setData(response);
-      setLoading(false);
+      try {
+        const response = await getData('raffle-001');
+        setData(response);
+      } catch (error) {
+        console.log('Error' + error);
+      } finally {
+        setLoading(false);
+      }
     }
     obtainData();
   }, []);
