@@ -41,18 +41,18 @@ npm install
 
 ```
 
-# Usage
+## Usage
 1. Start the development server:
 ```sh
 npm run dev
 ```
 Access the application from your browser at http://localhost:5173.
 
-# Contributing
+## Contributing
 Feel free to contribute to this project by opening pull requests or issues on the repository.
 
-# Credits
+## Credits
 This project was created by Jose Lacruz.
 
-#License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
