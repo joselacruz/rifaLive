@@ -1,12 +1,17 @@
 import { useContext, useState } from 'react';
 import { RaffleContext } from '../../context/RaffleContext';
 import { buyTicket } from '../../utils/buyTicket';
-import './Table.css';
 import { Box, Button, Skeleton, Typography } from '@mui/material';
 import Modal from '../Modal';
+import { TicketId } from '../../interfaces/raffle';
+import './Table.css';
 
-const Table = ({ actionsActive = false }) => {
-  const [selectedTicket, setSelectedTicket] = useState('');
+interface props {
+  actionsActive: boolean
+}
+
+const Table = ({ actionsActive = false }:props) => {
+  const [selectedTicket, setSelectedTicket] = useState <TicketId>(0);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -17,9 +22,11 @@ const Table = ({ actionsActive = false }) => {
   const tickets = Array.from({ length: 201 }, (_, index) => index);
   const { checkSoldTicket, loading } = useContext(RaffleContext);
 
-  const actionsTicket = (e) => {
-    const ticketAvailable = !e.target.classList.contains('ticket-used');
-    const ticketNumber = e.target.textContent;
+  const actionsTicket = (e:React.MouseEvent<HTMLParagraphElement>) => {
+    const target = e.target as HTMLParagraphElement;
+
+    const ticketAvailable = !target.classList.contains('ticket-used');
+    const ticketNumber = Number(target.textContent);
     setSelectedTicket(ticketNumber);
 
     if (ticketAvailable) {
@@ -27,10 +34,12 @@ const Table = ({ actionsActive = false }) => {
     } else alert(`El ticket numero ${ticketNumber} no esta disponible`);
   };
 
-  function handleBuy(ticketNumber) {
+
+  function handleBuy(ticketNumber:TicketId) {
     buyTicket({
       tlf: '584149525949',
       mensajeCodificado: `hola quiero comprar el ticket numero ${ticketNumber}`,
+      
     });
     setOpenModal(false);
   }

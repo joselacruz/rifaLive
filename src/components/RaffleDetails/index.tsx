@@ -14,13 +14,17 @@ import Modal from '../Modal';
 import Table from '../Table';
 import { RaffleContext } from '../../context/RaffleContext';
 
-const RaffleDetails = ({ navigateTo }) => {
-  const { loading, data, allTickets, ticketsAvailable } =
-    useContext(RaffleContext);
+interface Props {
+  navigateTo : () => void
+}
+
+const RaffleDetails = ({ navigateTo }:Props) => {
+  const { loading, allTickets, ticketsAvailable} = useContext(RaffleContext);
+
   const [openModal, setOpenModal] = useState(false);
 
   const handleClose = () => {
-    setOpenModal(false);
+   setOpenModal(false);
   };
 
   return (

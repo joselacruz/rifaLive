@@ -1,13 +1,18 @@
 import { Box, Container, Typography } from '@mui/material';
 import { useTheme } from '@mui/system';
-import React, { useContext, useRef } from 'react';
+import React, { RefObject, useContext} from 'react';
 import VideoLock from '../VideoLock';
 import { RaffleContext } from '../../context/RaffleContext';
 
-const RaffleVideo = ({ sectionRef }) => {
+interface RaffleVideoProps {
+  sectionRef: RefObject<HTMLDivElement>;
+}
+
+
+const RaffleVideo = ({ sectionRef }: RaffleVideoProps) => {
   const theme = useTheme();
   const warningColor = theme.palette.warning.main;
-  const { ticketsAvailable, data } = useContext(RaffleContext);
+  const { ticketsAvailable, data} = useContext(RaffleContext);
 
   return (
     <Container
@@ -25,8 +30,9 @@ const RaffleVideo = ({ sectionRef }) => {
         Sorteo en Vivo
       </Typography>
 
-      {!data.video && (
-        <Box
+      {!data?.video && (
+       <>
+ <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -53,8 +59,10 @@ const RaffleVideo = ({ sectionRef }) => {
             TICKETS PARA INICIAR EL SORTEO
           </Typography>
         </Box>
+        <VideoLock />
+       </>
       )}
-      {data.video && (
+      {data?.video && (
         <iframe
           width="100%"
           height="315"
@@ -64,7 +72,7 @@ const RaffleVideo = ({ sectionRef }) => {
         />
       )}
 
-      {!data.video && <VideoLock />}
+      {/* {!data?.video && <VideoLock />} */}
     </Container>
   );
 };

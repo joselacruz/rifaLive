@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { Data, Ticket } from '../interfaces/raffle';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,35 +21,42 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-export async function docExist({ name, docId }) {
-  const docRef = doc(db, name, docId);
+// export async function docExist({ name, docId }) {
+//   const docRef = doc(db, name, docId);
 
-  try {
-    const docSnapshot = await getDoc(docRef);
+//   try {
+//     const docSnapshot = await getDoc(docRef);
 
-    // Si el documento existe, retorna 'true', si no existe, retorna 'false'
-    return docSnapshot.exists();
-  } catch (error) {
-    // Maneja errores durante la obtención del documento
-    console.error('Error al obtener el documento:', error);
-    // Retorna 'false' en caso de error para indicar que no existe
-    return false;
-  }
-}
+//     // Si el documento existe, retorna 'true', si no existe, retorna 'false'
+//     return docSnapshot.exists();
+//   } catch (error) {
+//     // Maneja errores durante la obtención del documento
+//     console.error('Error al obtener el documento:', error);
+//     // Retorna 'false' en caso de error para indicar que no existe
+//     return false;
+//   }
+// }
 
-export const getData = async (raffleId) => {
+
+export const getData = async (raffleId: string) => {
   try {
     const docRef = doc(db, 'raffle', raffleId);
     const docSnapshot = await getDoc(docRef);
 
     if (docSnapshot.exists()) {
-      // Si el documento existe, retorna el array 'recents'
-      const userData = docSnapshot.data();
-      return userData || [];
+      // Si el documento existe, retorna el array 
+      const resquest = docSnapshot.data();
+      const data: Data = {
+        soldTickets: resquest.soldTickets.map((ticket: any) => ({
+          ticketId: ticket.ticketId,
+          user: ticket.user
+        })),
+      };
+      return data;
     } else {
       // Si el documento no existe, retorna un array vacío
       console.log('El documento no existe.');
-      return [];
+     return undefined;
     }
   } catch (error) {
     // Maneja errores si ocurren durante el proceso de obtención de datos

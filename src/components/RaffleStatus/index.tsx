@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import './RaffleStatus.css';
 import Table from '../Table';
 import ConsultTicket from '../ConsultTicket';

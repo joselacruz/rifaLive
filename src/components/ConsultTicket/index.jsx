@@ -11,7 +11,7 @@ const ConsultTicket = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [openModal, setOpenModal] = useState(false);
-  const [ticketOwner, setTicketOwner] = useState(undefined);
+  const [ticketOwner, setTicketOwner] = useState();
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -77,14 +77,13 @@ const ConsultTicket = () => {
         title={'Resultados'}
         children={
           <Box>
-            {ticketOwner === undefined ? (
+            {ticketOwner && ticketOwner.found ? (
               <Typography>
-                {' '}
-                El ticket {inputValue} aún no ha sido asignado a ningún usuario.
+                {`Ticket ${inputValue} Propietario: ${ticketOwner.owner}`}
               </Typography>
             ) : (
               <Typography>
-                {`Ticket ${inputValue} Propietario: ${ticketOwner.user}`}
+                {`El ticket ${inputValue} aún no ha sido asignado a ningún usuario`}
               </Typography>
             )}
           </Box>

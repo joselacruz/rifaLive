@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import './App.css';
-import { AppBar, Container, Typography, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import RaffleStatus from './components/RaffleStatus';
 import RaffleVideo from './components/RaffleVideo';
 import { createTheme } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import RaffleDetails from './components/RaffleDetails';
 import Layout from './components/Layout';
 import Header from './components/Header';
 import { RaffleProvider } from './context/RaffleContext';
+
 function App() {
   const darkTheme = createTheme({
     palette: {
@@ -20,7 +21,7 @@ function App() {
       },
     },
   });
-  const sectionLive = useRef(null);
+  const sectionLive = useRef <HTMLDivElement> (null);
   const scrollToSection = () => {
     if (sectionLive.current) {
       sectionLive.current.scrollIntoView({ behavior: 'smooth' });
@@ -31,7 +32,6 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <RaffleProvider>
           <Header />
-
           <Layout>
             <RaffleDetails navigateTo={scrollToSection} />
             <RaffleStatus />
